@@ -20,6 +20,8 @@
 #include "lauxlib.h"
 #include "lualib.h"
 
+#include "lstate.h"
+#include "MDFS.h"
 
 #if !defined(LUA_PROGNAME)
 #define LUA_PROGNAME		"lua"
@@ -654,6 +656,19 @@ int main (int argc, char **argv) {
     l_message(argv[0], "cannot create state: not enough memory");
     return EXIT_FAILURE;
   }
+
+	FILE* f = fopen("test_fs", "r");
+	if (f == NULL) 
+	{
+		printf("File error\n");
+		return 1;
+	}
+	void* test_fs = malloc(65536*2);
+	fread(test_fs, 2, 65536, f);
+	fclose(f);
+	L->mdfs = mdfs_init_simple(test_fs);
+
+
   lua_pushcfunction(L, &pmain);  /* to call 'pmain' in protected mode */
   lua_pushinteger(L, argc);  /* 1st argument */
   lua_pushlightuserdata(L, argv); /* 2nd argument */
@@ -661,6 +676,7 @@ int main (int argc, char **argv) {
   result = lua_toboolean(L, -1);  /* get result */
   report(L, status);
   lua_close(L);
+  free(test_fs);
   return (result && status == LUA_OK) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 

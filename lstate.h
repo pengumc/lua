@@ -13,6 +13,7 @@
 #include "ltm.h"
 #include "lzio.h"
 
+#include "MDFS.h"
 
 /*
 ** Some notes about garbage-collected objects: All objects in Lua must
@@ -324,6 +325,7 @@ struct lua_State {
   int basehookcount;
   int hookcount;
   volatile l_signalT hookmask;
+  mdfs_t* mdfs;
 };
 
 

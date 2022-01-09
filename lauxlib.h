@@ -15,6 +15,7 @@
 #include "luaconf.h"
 #include "lua.h"
 
+#include "MDFS.h"
 
 /* global table */
 #define LUA_GNAME	"_G"
@@ -239,11 +240,11 @@ LUALIB_API char *(luaL_buffinitsize) (lua_State *L, luaL_Buffer *B, size_t sz);
 ** after that initial structure).
 */
 
-#define LUA_FILEHANDLE          "FILE*"
+#define LUA_FILEHANDLE          "mdfs_FILE*"
 
 
 typedef struct luaL_Stream {
-  FILE *f;  /* stream (NULL for incompletely created streams) */
+  mdfs_FILE *f;  /* stream (NULL for incompletely created streams) */
   lua_CFunction closef;  /* to close stream (NULL for closed streams) */
 } luaL_Stream;
 
