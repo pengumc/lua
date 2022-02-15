@@ -13,7 +13,7 @@
 #include "ltm.h"
 #include "lzio.h"
 
-#include "MDFS.h"
+#include "MDFS/MDFS.h"
 
 /*
 ** Some notes about garbage-collected objects: All objects in Lua must

@@ -15,7 +15,7 @@
 #include "luaconf.h"
 #include "lua.h"
 
-#include "MDFS.h"
+#include "MDFS/MDFS.h"
 
 /* global table */
 #define LUA_GNAME	"_G"

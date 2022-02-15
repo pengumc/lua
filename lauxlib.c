@@ -27,7 +27,7 @@
 #include "lauxlib.h"
 
 #include "lstate.h"
-#include "MDFS.h"
+#include "MDFS/MDFS.h"
 
 #if !defined(MAX_SIZET)
 /* maximum value for size_t */
